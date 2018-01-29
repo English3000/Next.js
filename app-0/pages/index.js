@@ -9,7 +9,7 @@ const PostLink = (props) => (
   </li>
 );
 
-export default () => (
+export default () => [
   <Layout>
     <h1>My Blog</h1>
     <ul>
@@ -18,4 +18,4 @@ export default () => (
       <PostLink id="deploy-nextjs" title="Deploy apps with Zeit"/>
     </ul>
   </Layout>
-);
+];

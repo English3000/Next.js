@@ -10,5 +10,11 @@ export default (props) => (
   <div style={layoutStyle}>
     <Header />
     {props.children}
+
+    <style jsx global>{`
+      h1 {
+        background-color: lightblue;
+      }
+    `}</style>
   </div>
 );
