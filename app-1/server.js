@@ -1,6 +1,7 @@
 //imports
 const express = require('express');
 const next = require('next');
+import postsController from './controllers/posts';
 //middlewares
 // cors
 // body-parser
@@ -35,7 +36,7 @@ app.prepare().then(() => {
 
   // CUSTOM REST ROUTES
   server.get('/test', () => console.log('test'));
-  // .get('/api/_', _Controller.index)
+  server.get('/api/posts', postsController.index);
   // .get('/api/_/:id', _Controller.show)
   // .delete('/api/_/:id', _Controller.destroy)
   // .post('/api/_', _Controller.create)
