@@ -2,11 +2,14 @@
 const express = require('express');
 const next = require('next');
 import postsController from './controllers/posts';
+import db from './models/index';
 //middlewares
 // cors
 // body-parser
 // morgan (logger)
 // history
+
+// passport //for user auth.: https://github.com/jaredhanson/passport-local
 
 const app = next({
   dev: process.env.NODE_ENV !== 'production'
@@ -19,6 +22,8 @@ Supported options:
   quiet (bool) Hide error messages containing server information - default false
   conf (object) the same object you would use in next.config.js - default {}
 */
+
+//Express routing: https://expressjs.com/en/guide/routing.html
 const pagesController = app.getRequestHandler(); //handler == controller
 // .getRequestHandler is a built-in Next.js controller that looks in ./pages
 // & returns the first .js file that (case-sensitively) matches the request's path
@@ -39,7 +44,10 @@ app.prepare().then(() => {
   server.get('/api/posts', postsController.index);
   // .get('/api/_/:id', _Controller.show)
   // .delete('/api/_/:id', _Controller.destroy)
+
   // .post('/api/_', _Controller.create)
+  //See: https://gist.github.com/JoeKarlsson/ebb1c714466ae3de88ae565fa9ba4779#making-models
+
   // .patch('/api/_/:id', _Controller.update)
 
   // .get('/api/_/new', _Controller.new)
@@ -53,6 +61,7 @@ app.prepare().then(() => {
 
   server.listen(3000, err => {
     if (err) throw err;
+    db.sequelize.sync(); //syncs app w/ db
     console.log('connected to localhost:3000');
     //pings current path ('/' by default) every few seconds
   });

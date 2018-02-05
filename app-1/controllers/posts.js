@@ -1,5 +1,6 @@
 import Post from '../models/post';
 
+// EXAMPLE: https://github.com/ameet01/codedash/blob/master/controllers/AuthController.js
 export default {
   async index(req, res) {
     const posts = await Post.findAll();
